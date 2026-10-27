@@ -1,11 +1,7 @@
+
 fastapi
-uvicorn[standard]
 python-multipart
-torch
-transformers
 tensorflow>=2.16
 pillow
 sqlalchemy
 pydantic
-pytest
-httpx
