@@ -1,5 +1,7 @@
-export const API_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") ?? "http://localhost:8000";
-export interface Prediction { scan_id: string; category: string; model_version: string }
+export const API_URL =
+(import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") ??
+  (import.meta.env.DEV ? "http://localhost:8000" : "");
+
 export interface HistoryItem { id: string; created_at: string; category: string; model_version: string }
 export class ApiError extends Error { constructor(public kind: "unavailable" | "unclear" | "large" | "format" | "bad" | "network" | "generic") { super(kind); } }
 
