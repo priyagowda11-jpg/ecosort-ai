@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      CORS_ORIGINS: http://localhost:8080
+    volumes:
+      - ./ml/artifacts:/artifacts:ro   # trained model must exist here
+      - scan-data:/data
+    ports: ["8000:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u;u.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+  frontend:
+    build:
+      context: ./frontend
+      args: { VITE_API_URL: http://localhost:8000 }
+    ports: ["8080:80"]
+    depends_on: [backend]
+volumes:
+  scan-data:

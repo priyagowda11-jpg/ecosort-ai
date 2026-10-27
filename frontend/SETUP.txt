@@ -1,0 +1,1 @@
+cd frontend; npm install; copy .env.example .env  (set VITE_API_URL to your deployed backend for online use); npm run dev
